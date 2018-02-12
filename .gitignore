@@ -92,3 +92,8 @@ ENV/
 *~
 *.swp
 *.swo
+
+# Datasets, results etc.
+*.zip
+datasets/**/*.wav
+results
