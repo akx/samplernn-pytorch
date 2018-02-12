@@ -1,0 +1,25 @@
+---
+
+- step:
+    name: Train
+    image: nightseas/pytorch:cuda8.0-cudnn6-ubuntu16.04
+    command:
+    - pip install -r requirements.txt
+    - mkdir -p datasets/input
+    - unzip -d datasets/input $VH_INPUTS_DIR/datazip/*.zip
+    - python train.py --exp test --dataset input --results_path $VH_OUTPUTS_DIR {parameters} 
+    inputs:
+      - name: datazip
+    parameters:
+      - name: batch_size
+        type: integer
+        default: 64
+      - name: n_rnn
+        type: integer
+        default: 2
+      - name: frame_sizes
+        type: string
+        default: "16 4"
+      - name: q_levels
+        type: integer
+        default: 256
