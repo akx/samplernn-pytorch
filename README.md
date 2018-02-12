@@ -21,6 +21,14 @@ cd datasets
 
 You can also prepare a dataset yourself. It should be a directory in `datasets/` filled with equal-length wav files. Or you can create your own dataset format by subclassing `torch.utils.data.Dataset`. It's easy, take a look at `dataset.FolderDataset` in this repo for an example.
 
+If you happen to have a zip file with wav/ogg files, you can use the `zipfile-to-dataset.py` script to generate a dataset:
+
+```
+cd datasets
+# Generate `mydatasetname`, with sample rate 16000 Hz, 0.1 second slices
+python zipfile-to-dataset.py -i myzipfile.zip -d mydatasetname --sample-rate=16000 --slice-length=0.1
+```
+
 ## Training
 
 To train the model you need to run `train.py`. All model hyperparameters are settable in the command line. Most hyperparameters have sensible default values, so you don't need to provide all of them. Run `python train.py -h` for details. To train on the `piano` dataset using the best hyperparameters we've found, run:
