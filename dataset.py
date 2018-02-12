@@ -26,6 +26,7 @@ class FolderDataset(Dataset):
         ]
 
     def __getitem__(self, index):
+        print('Loading file', self.file_names[index])
         (seq, _) = load(self.file_names[index], sr=None, mono=True)
         return torch.cat([
             torch.LongTensor(self.overlap_len) \
